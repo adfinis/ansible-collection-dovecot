@@ -1,0 +1,22 @@
+---
+
+- name: Create sieve script directories
+  ansible.builtin.file:
+    path: "{{ item | dirname }}"
+    state: directory
+  loop: "{{ dovecot_sieve_scripts }}"
+
+- name: Render sieve scripts
+  ansible.builtin.template:
+    src: "templates/sieve/{{ item }}"
+    dest: "{{ item }}"
+    owner: root
+    group: dovemail
+    mode: 0644
+  loop: "{{ dovecot_sieve_scripts }}"
+
+- name: Compile sieve scripts
+  ansible.builtin.command: >-
+    /usr/bin/sievec {{ item }}
+  changed_when: true
+  loop: "{{ dovecot_sieve_scripts }}"

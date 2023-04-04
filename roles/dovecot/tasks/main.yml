@@ -1,0 +1,22 @@
+---
+
+- import_tasks: install.yml
+  tags:
+    - "role::dovecot"
+    - "role::dovecot:install"
+
+- import_tasks: config.yml
+  tags:
+    - "role::dovecot"
+    - "role::dovecot:config"
+
+- import_tasks: sieve.yml
+  tags:
+    - "role::dovecot"
+    - "role::dovecot:sieve"
+
+- import_tasks: oidckeys.yml
+  tags:
+    - "role::dovecot"
+    - "role::dovecot:oidckeys"
+

@@ -1,0 +1,22 @@
+---
+
+- name: Add dovecot-ce repository key
+  ansible.builtin.apt_key:
+    url: https://repo.dovecot.org/DOVECOT-REPO-GPG
+    keyring: /etc/apt/trusted.gpg.d/dovecot.gpg
+
+- name: Add dovecot-ce repository
+  ansible.builtin.apt_repository:
+    filename: dovecot.list
+    repo: "{{ dovecot_repository }}"
+
+- name: Install packages
+  ansible.builtin.apt:
+    name: "{{ dovecot_packages }}"
+
+- name: Start and enable dovecot
+  ansible.builtin.service:
+    name: dovecot
+    state: started
+    enabled: yes
+

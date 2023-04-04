@@ -1,0 +1,3 @@
+{% for user, pass in dovecot_auth_master_users.items() %}
+{{ user }}:{% if not pass.startswith('{') %}{PLAIN}{% endif %}{{ pass }}::::::
+{% endfor %}

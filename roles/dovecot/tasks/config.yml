@@ -1,0 +1,57 @@
+---
+
+- name: render base dovecot config
+  ansible.builtin.template:
+    src: "etc/dovecot/dovecot.conf.j2"
+    dest: "/etc/dovecot/dovecot.conf"
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart dovecot
+
+- name: create /etc/dovecot/conf.d
+  ansible.builtin.file:
+    path: /etc/dovecot/conf.d
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: render dovecot conf.d config
+  ansible.builtin.template:
+    src: "{{ item }}"
+    dest: "/etc/dovecot/conf.d/{{ item | basename }}"
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart dovecot
+  with_fileglob:
+    - "templates/etc/dovecot/conf.d/*"
+
+- name: render dovecot conf.ext config
+  ansible.builtin.template:
+    src: "{{ item }}"
+    dest: "/etc/dovecot/{{ item | basename }}"
+    owner: root
+    group: dovecot
+    mode: 0640
+  notify: restart dovecot
+  with_fileglob:
+    - "templates/etc/dovecot/conf.ext/*"
+
+- name: Render master passdb
+  ansible.builtin.template:
+    src: "etc/dovecot/master-users.j2"
+    dest: "{{ dovecot_auth_master_filename }}"
+    owner: root
+    group: dovecot
+    mode: 0640
+  notify: restart dovecot
+
+- name: Render quota warning script
+  ansible.builtin.template:
+    src: "usr/local/bin/dovecot-quota-warning.sh.j2"
+    dest: "/usr/local/bin/dovecot-quota-warning.sh"
+    owner: root
+    group: dovecot
+    mode: 0755

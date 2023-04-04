@@ -1,0 +1,8 @@
+{{ ansible_managed | comment }}
+
+tokeninfo_url = {{ dovecot_auth_oauth2_tokeninfo_url }}
+introspection_mode = local
+local_validation_key_dict = fs:posix:prefix=/etc/dovecot/keys/
+force_introspection = no
+username_attribute = {{ dovecot_auth_oauth2_username_attribute }}
+debug = no

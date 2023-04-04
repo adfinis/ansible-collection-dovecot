@@ -1,0 +1,26 @@
+#!/bin/bash
+{{ ansible_managed | comment }}
+# Adapted from https://doc.dovecot.org/configuration_manual/quota/#quota-configuration-warning-scripts
+
+set -e
+
+PERCENT="$1"
+USER="$2"
+
+SUBJECT="{{ dovecot_quota_warning_message_subject }}"
+{% for limit, body in dovecot_quota_warning_message_bodies %}
+BODY{{ limit }}='{{ body }}'
+{% endfor %}
+_BODY="BODY${PERCENT}"
+
+if [[ -z "${!_BODY}" ]]; then
+    exit 0
+fi
+
+cat <<EOF | /usr/lib/dovecot/dovecot-lda -d $USER -o "plugin/quota=maildir:User quota:noenforcing"
+From: {{ dovecot_quota_warning_message_from }}
+To: $USER
+Subject: $SUBJECT
+
+${!_BODY}
+EOF
