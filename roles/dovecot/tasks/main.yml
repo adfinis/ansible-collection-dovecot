@@ -1,22 +1,25 @@
 ---
 
-- import_tasks: install.yml
+- name: Install Dovecot
+  ansible.builtin.import_tasks: install.yml
   tags:
     - "role::dovecot"
     - "role::dovecot:install"
 
-- import_tasks: config.yml
+- name: Render Dovecot configuration
+  ansible.builtin.import_tasks: config.yml
   tags:
     - "role::dovecot"
     - "role::dovecot:config"
 
-- import_tasks: sieve.yml
+- name: Render global Sieve scripts
+  ansible.builtin.import_tasks: sieve.yml
   tags:
     - "role::dovecot"
     - "role::dovecot:sieve"
 
-- import_tasks: oidckeys.yml
+- name: Fetch OIDC JWK keys from IdP for local validation
+  ansible.builtin.import_tasks: oidckeys.yml
   tags:
     - "role::dovecot"
     - "role::dovecot:oidckeys"
-

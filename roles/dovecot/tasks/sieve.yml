@@ -4,6 +4,9 @@
   ansible.builtin.file:
     path: "{{ item | dirname }}"
     state: directory
+    owner: root
+    group: dovemail
+    mode: "0755"
   loop: "{{ dovecot_sieve_scripts }}"
 
 - name: Render sieve scripts
@@ -12,7 +15,7 @@
     dest: "{{ item }}"
     owner: root
     group: dovemail
-    mode: 0644
+    mode: "0644"
   loop: "{{ dovecot_sieve_scripts }}"
 
 - name: Compile sieve scripts

@@ -1,34 +1,33 @@
 ---
 
-- name: fetch oidc jwks endpoint
+- name: Fetch OIDC JWKs endpoint
   ansible.builtin.uri:
     url: "{{ dovecot_oidc_jwk_endpoint }}"
-    return_content: yes
-  changed_when: no
-  check_mode: no
+    return_content: true
+  changed_when: false
+  check_mode: false
   register: dovecot_register_oidc_jwks
 
-- name: create jwk pubkey directories
+- name: Create JWK pubkey directories
   ansible.builtin.file:
     dest: "/etc/dovecot/keys/{{ item.0 }}/{{ item.1.alg }}"
     state: directory
     owner: root
     group: root
-    mode: 0755
+    mode: "0755"
   with_nested:
     - "{{ dovecot_oidc_azp }}"
     - "{{ dovecot_register_oidc_jwks.json['keys'] | list }}"
   notify: restart dovecot
 
-- name: write jwk pubkeys to file
+- name: Write JWK pubkeys to file
   ansible.builtin.copy:
     dest: "/etc/dovecot/keys/{{ item.0 }}/{{ item.1.alg }}/{{ item.1.kid }}"
     content: "{{ item.1 | to_json }}"
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
   with_nested:
     - "{{ dovecot_oidc_azp }}"
     - "{{ dovecot_register_oidc_jwks.json['keys'] | list }}"
   notify: restart dovecot
-

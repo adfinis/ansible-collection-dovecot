@@ -4,4 +4,3 @@
   ansible.builtin.service:
     name: dovecot
     state: restarted
-

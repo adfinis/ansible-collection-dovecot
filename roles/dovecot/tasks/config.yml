@@ -11,41 +11,41 @@
     dovecot_dovemail_uid: "{{ dovecot_register_getent.getent_passwd[2] }}"
     dovecot_dovemail_gid: "{{ dovecot_register_getent.getent_passwd[3] }}"
 
-- name: render base dovecot config
+- name: Render base dovecot config
   ansible.builtin.template:
     src: "etc/dovecot/dovecot.conf.j2"
     dest: "/etc/dovecot/dovecot.conf"
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
   notify: restart dovecot
 
-- name: create /etc/dovecot/conf.d
+- name: Create /etc/dovecot/conf.d
   ansible.builtin.file:
     path: /etc/dovecot/conf.d
     state: directory
     owner: root
     group: root
-    mode: 0755
+    mode: "0755"
 
-- name: render dovecot conf.d config
+- name: Render dovecot conf.d config
   ansible.builtin.template:
     src: "{{ item }}"
     dest: "/etc/dovecot/conf.d/{{ item | basename }}"
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
   notify: restart dovecot
   with_fileglob:
     - "templates/etc/dovecot/conf.d/*"
 
-- name: render dovecot conf.ext config
+- name: Render dovecot conf.ext config
   ansible.builtin.template:
     src: "{{ item }}"
     dest: "/etc/dovecot/{{ item | basename }}"
     owner: root
     group: dovecot
-    mode: 0640
+    mode: "0640"
   notify: restart dovecot
   with_fileglob:
     - "templates/etc/dovecot/conf.ext/*"
@@ -56,7 +56,7 @@
     dest: "{{ dovecot_auth_master_filename }}"
     owner: root
     group: dovecot
-    mode: 0640
+    mode: "0640"
   notify: restart dovecot
 
 - name: Render quota warning script
@@ -65,4 +65,4 @@
     dest: "/usr/local/bin/dovecot-quota-warning.sh"
     owner: root
     group: dovecot
-    mode: 0755
+    mode: "0755"

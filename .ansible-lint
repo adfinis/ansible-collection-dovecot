@@ -1,0 +1,7 @@
+---
+
+skip_list:
+  - galaxy[no-changelog]
+  - schema[meta-runtime]
+  - name[casing]
+  - yaml[comments-indentation]

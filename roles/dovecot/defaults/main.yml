@@ -2,11 +2,7 @@
 
 dovecot_version: "2.3"
 dovecot_repo_version: >-
-  {%- if dovecot_version | split('.') | length > 2 -%}
-  ce-{{ dovecot_version }}
-  {%- else -%}
-  ce-latest-{{ dovecot-version }}
-  {% endif %}
+  {%- if dovecot_version | split('.') | length > 2 -%}ce-{{ dovecot_version }}{%- else -%}ce-latest-{{ dovecot_version }}{% endif %}
 dovecot_repository: >-
   deb https://repo.dovecot.org/{{ dovecot_repo_version }}/debian/{{ ansible_facts.distribution_release }} {{ ansible_facts.distribution_release }} main
 
@@ -83,7 +79,7 @@ dovecot_director_user_expire: "15 min"
 dovecot_director_username_hash: "%Lu"
 dovecot_lmtp_proxy: false
 
-dovecot_login_trusted_networks: []  
+dovecot_login_trusted_networks: []
 
 dovecot_disable_plaintext_auth: true
 dovecot_auth_cache_size: 0
@@ -149,4 +145,3 @@ dovecot_sieve_scripts: []
 dovecot_pop3_client_workarounds: []
 
 dovecot_additional_config: ""
-
