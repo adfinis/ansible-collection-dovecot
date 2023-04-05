@@ -61,12 +61,15 @@ dovecot_imap_vsz_limit: "$default_vsz_limit"
 dovecot_imap_process_limit: 1024
 dovecot_pop3_vsz_limit: "$default_vsz_limit"
 dovecot_pop3_process_limit: 1024
+dovecot_auth_worker_service_count: 1
 dovecot_auth_client_limit: "$default_client_limit"
 dovecot_anvil_client_limit: "$default_client_limit"
 dovecot_managesieve_login_service_count: 1
 dovecot_managesieve_login_min_avail: 0
 dovecot_managesieve_login_vsz_limit: "64M"
 dovecot_managesieve_process_limit: 1024
+dovecot_managesieve_vsz_limit: "$default_vsz_limit"
+
 
 dovecot_director_enabled: false
 dovecot_director_enabled_imap: "{{ dovecot_director_enabled }}"
@@ -78,9 +81,11 @@ dovecot_director_servers: []
 dovecot_director_mail_servers: []
 dovecot_director_user_expire: "15 min"
 dovecot_director_username_hash: "%Lu"
+dovecot_lmtp_proxy: false
 
 dovecot_login_trusted_networks: []  
 
+dovecot_disable_plaintext_auth: true
 dovecot_auth_cache_size: 0
 dovecot_auth_cache_ttl: 1 hour
 dovecot_auth_cache_negative_ttl: 1 hour
@@ -108,6 +113,19 @@ dovecot_auth_oauth2_username_attribute: email
 dovecot_oidc_azp:
   - default
 
+dovecot_imap_mail_max_userip_connections: 10
+
+dovecot_lmtp_bind_inet: false
+dovecot_lmtp_bind_port: 24
+dovecot_submission_host: ""
+
+dovecot_acl_enabled: false
+dovecot_acl_imap_enabled: "{{ dovecot_acl_enabled }}"
+dovecot_acl: []
+dovecot_acl_shared_dict: ""
+dovecot_acl_anyone: false
+dovecot_acl_user: ""
+
 dovecot_quota_enabled: false
 dovecot_quota_imap_enabled: "{{ dovecot_quota_enabled }}"
 dovecot_quota_roots: ["maildir:User quota"]
@@ -127,7 +145,6 @@ dovecot_sieve_mail_max_userip_connections: 10
 dovecot_sieve_global_dirname: ""
 dovecot_sieve_before: []
 dovecot_sieve_scripts: []
-dovecot_lmtp_proxy: false
 
 dovecot_pop3_client_workarounds: []
 

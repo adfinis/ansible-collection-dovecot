@@ -1,5 +1,16 @@
 ---
 
+- name: Get UID and GID of the dovemail user
+  ansible.builtin.getent:
+    database: passwd
+    key: dovemail
+  register: dovecot_register_getent
+
+- name: Set dovemail UID and GID facts
+  ansible.builtin.set_fact:
+    dovecot_dovemail_uid: "{{ dovecot_register_getent.getent_passwd[2] }}"
+    dovecot_dovemail_gid: "{{ dovecot_register_getent.getent_passwd[3] }}"
+
 - name: render base dovecot config
   ansible.builtin.template:
     src: "etc/dovecot/dovecot.conf.j2"
