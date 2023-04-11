@@ -48,6 +48,7 @@ dovecot_namespaces:
 
 dovecot_default_process_limit: 100
 dovecot_default_client_limit: 1000
+dovecot_default_vsz_limit: 256M
 dovecot_imap_login_service_count: 1
 dovecot_imap_login_min_avail: 0
 dovecot_imap_login_vsz_limit: "$default_vsz_limit"
