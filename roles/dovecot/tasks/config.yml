@@ -15,7 +15,7 @@
 - name: Set dovenull UID and GID facts
   ansible.builtin.set_fact:
     dovecot_dovenull_uid: "{{ dovecot_register_getent_passwd.getent_passwd[2] }}"
-    dovecot_dovenull_gid: "{{ dovecot_register_getent_group.getent_passwd[2] }}"
+    dovecot_dovenull_gid: "{{ dovecot_register_getent_group.getent_group[2] }}"
 
 - name: Render base dovecot config
   ansible.builtin.template:
