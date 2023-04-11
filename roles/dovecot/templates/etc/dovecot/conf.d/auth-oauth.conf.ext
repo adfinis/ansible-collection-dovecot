@@ -1,7 +1,5 @@
 {{ ansible_managed | comment }}
 
-auth_mechanisms = $auth_mechanisms oauthbearer xoauth2
-
 passdb {
   driver = oauth2
   mechanisms = oauthbearer xoauth2
