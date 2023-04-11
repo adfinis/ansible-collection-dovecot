@@ -8,7 +8,7 @@ dovecot_repository: >-
 
 dovecot_mailowner_user: dovenull
 dovecot_mailowner_group: dovenull
-  
+
 dovecot_packages:
   - dovecot-core
   - dovecot-imapd
