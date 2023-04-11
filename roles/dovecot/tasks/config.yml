@@ -4,18 +4,16 @@
   ansible.builtin.getent:
     database: passwd
     key: "{{ dovecot_mailowner_user }}"
-  register: dovecot_register_getent_passwd
 
 - name: Get GID of the dovenull user
   ansible.builtin.getent:
     database: group
     key: "{{ dovecot_mailowner_group }}"
-  register: dovecot_register_getent_group
 
 - name: Set dovenull UID and GID facts
   ansible.builtin.set_fact:
-    dovecot_dovenull_uid: "{{ dovecot_register_getent_passwd.getent_passwd[2] }}"
-    dovecot_dovenull_gid: "{{ dovecot_register_getent_group.getent_group[2] }}"
+    dovecot_dovenull_uid: "{{ ansible_facts.getent_passwd[dovecot_mailowner_user][1] }}"
+    dovecot_dovenull_gid: "{{ ansible_facts.getent_group[dovecot_mailowner_group][1] }}"
 
 - name: Render base dovecot config
   ansible.builtin.template:
