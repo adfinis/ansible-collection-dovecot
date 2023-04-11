@@ -132,6 +132,8 @@ dovecot_quota_rules:
   - "*:storage=1G"
   - "Trash:storage=+100M"
 dovecot_quota_warning_script: null
+dovecot_quota_warning_executable_user: dovecot
+dovecot_quota_warning_socket_user: vmail
 dovecot_quota_warnings: []
 
 dovecot_push_notification_enabled: false
