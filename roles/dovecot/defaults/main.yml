@@ -84,6 +84,7 @@ dovecot_lmtp_proxy: false
 
 dovecot_login_trusted_networks: []
 
+dovecot_enable_postfix_auth_service: false
 dovecot_disable_plaintext_auth: true
 dovecot_auth_cache_size: 0
 dovecot_auth_cache_ttl: 1 hour
