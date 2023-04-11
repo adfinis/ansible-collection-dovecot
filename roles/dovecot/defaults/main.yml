@@ -6,6 +6,9 @@ dovecot_repo_version: >-
 dovecot_repository: >-
   deb https://repo.dovecot.org/{{ dovecot_repo_version }}/debian/{{ ansible_facts.distribution_release }} {{ ansible_facts.distribution_release }} main
 
+dovecot_mailowner_user: dovenull
+dovecot_mailowner_group: dovenull
+  
 dovecot_packages:
   - dovecot-core
   - dovecot-imapd
