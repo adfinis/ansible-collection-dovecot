@@ -70,3 +70,9 @@
     owner: root
     group: dovecot
     mode: "0755"
+
+- name: Start and enable dovecot
+  ansible.builtin.service:
+    name: dovecot
+    state: started
+    enabled: true

@@ -7,15 +7,9 @@
 
 - name: Add dovecot-ce repository
   ansible.builtin.apt_repository:
-    filename: dovecot.list
+    filename: dovecot
     repo: "{{ dovecot_repository }}"
 
 - name: Install packages
   ansible.builtin.apt:
     name: "{{ dovecot_packages }}"
-
-- name: Start and enable dovecot
-  ansible.builtin.service:
-    name: dovecot
-    state: started
-    enabled: true
