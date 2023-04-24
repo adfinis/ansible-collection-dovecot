@@ -70,7 +70,7 @@ dovecot_managesieve_login_min_avail: 0
 dovecot_managesieve_login_vsz_limit: "64M"
 dovecot_managesieve_process_limit: 1024
 dovecot_managesieve_vsz_limit: "{{ dovecot_default_vsz_limit }}"
-
+dovecot_lmtp_vsz_limit: "{{ dovecot_default_vsz_limit }}"
 
 dovecot_director_enabled: false
 dovecot_director_enabled_imap: "{{ dovecot_director_enabled }}"
