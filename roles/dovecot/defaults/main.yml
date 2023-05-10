@@ -93,7 +93,8 @@ dovecot_auth_cache_size: 0
 dovecot_auth_cache_ttl: 1 hour
 dovecot_auth_cache_negative_ttl: 1 hour
 dovecot_auth_master_user_separator: ""
-dovecot_auth_enabled: [master]
+dovecot_auth_enabled:
+  - system
 dovecot_auth_mechanisms:
   - login
   - plain
