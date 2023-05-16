@@ -7,7 +7,7 @@ set -e
 PERCENT="$1"
 USER="$2"
 
-SUBJECT="{{ dovecot_quota_warning_message_subject }}"
+SUBJECT="{{ dovecot_quota_warning_message_subject.items() }}"
 {% for limit, body in dovecot_quota_warning_message_bodies %}
 BODY{{ limit }}='{{ body }}'
 {% endfor %}
