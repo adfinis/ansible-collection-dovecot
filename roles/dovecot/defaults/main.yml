@@ -63,7 +63,7 @@ dovecot_imap_process_limit: 1024
 dovecot_pop3_vsz_limit: "{{ dovecot_default_vsz_limit }}"
 dovecot_pop3_process_limit: 1024
 dovecot_auth_worker_service_count: 1
-dovecot_auth_client_limit: "{{ dovecot_default_client_limit"
+dovecot_auth_client_limit: "{{ dovecot_default_client_limit }}"
 dovecot_anvil_client_limit: "{{ dovecot_default_client_limit }}"
 dovecot_managesieve_login_service_count: 1
 dovecot_managesieve_login_min_avail: 0
