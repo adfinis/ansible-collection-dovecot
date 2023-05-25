@@ -6,7 +6,7 @@
 
 passdb {
   driver = ldap
-  mechanisms = login plain
+  mechanisms = {{ dovecot_auth_ldap_mechanisms | join(' ') }}
 
   # Path for LDAP configuration file, see example-config/dovecot-ldap.conf.ext
   args = /etc/dovecot/dovecot-ldap.conf.ext

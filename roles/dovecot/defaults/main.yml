@@ -98,6 +98,9 @@ dovecot_auth_enabled:
 dovecot_auth_mechanisms:
   - login
   - plain
+dovecot_auth_ldap_mechanisms:
+  - login
+  - plain
 
 dovecot_auth_static_passdb_args: ["proxy=y", "nopassword=y"]
 
