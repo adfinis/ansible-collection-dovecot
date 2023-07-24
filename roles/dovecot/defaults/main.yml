@@ -103,7 +103,7 @@ dovecot_auth_ldap_mechanisms:
   - plain
 
 dovecot_auth_static_passdb_args: ["proxy=y", "nopassword=y"]
-
+dovecot_auth_username_chars: abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890.-_@
 dovecot_auth_master_filename: /etc/dovecot/master-users
 dovecot_auth_master_users: {}
 

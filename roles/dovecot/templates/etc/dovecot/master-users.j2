@@ -1,3 +1,3 @@
-{% for user, pass in dovecot_auth_master_users.items() %}
-{{ user }}:{% if not pass.startswith('{') %}{PLAIN}{% endif %}{{ pass }}::::::
+{% for name, user in dovecot_auth_master_users.items() %}
+{{ name }}:{% if not user.pass.startswith('{') %}{PLAIN}{% endif %}{{ userpass }}::::::{{ user.extra_fields | default([]) | join(' ') }}
 {% endfor %}
