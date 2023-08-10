@@ -160,4 +160,6 @@ dovecot_sieve_scripts: []
 
 dovecot_pop3_client_workarounds: []
 
+dovecot_sysctl: {}
+
 dovecot_additional_config: ""
