@@ -76,3 +76,10 @@
     name: dovecot
     state: started
     enabled: true
+
+- name: set sysctl variables
+  ansible.posix.sysctl:
+    name: "{{ item.key }}"
+    value: "{{ item.value }}"
+    sysctl_file: /etc/sysctl.d/99-dovecot.conf
+  loop: "{{ dovecot_sysctl | dict2items }}"
