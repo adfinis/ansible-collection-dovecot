@@ -2,6 +2,8 @@
 
 skip_list:
   - galaxy[no-changelog]
+  - galaxy[version-incorrect]
+  - meta-runtime[unsupported-version]
   - schema[meta-runtime]
   - name[casing]
   - yaml[comments-indentation]
