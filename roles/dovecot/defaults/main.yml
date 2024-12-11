@@ -149,7 +149,7 @@ dovecot_quota_warnings: []
 
 dovecot_imap_capability: ""
 dovecot_virtual_enabled: false
-dovecot_virtual_folders: []
+dovecot_virtual_folders: {}
 
 dovecot_push_notification_enabled: false
 dovecot_push_notification_driver: ""
