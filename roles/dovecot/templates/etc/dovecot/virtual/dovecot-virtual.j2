@@ -1,0 +1,6 @@
+{% for rule in virtual_folder %}
+{% for mailbox in rule.mailboxes %}
+{{ mailbox }}
+{% endfor %}
+  {{ rule.search }}
+{% endfor %}

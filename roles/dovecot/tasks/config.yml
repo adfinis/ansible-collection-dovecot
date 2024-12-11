@@ -71,6 +71,28 @@
     group: dovecot
     mode: "0755"
 
+- name: Create virtual directories
+  ansible.builtin.file:
+    path: "/etc/dovecot/virtual/{{ item.key }}"
+    state: directory
+    owner: dovecot
+    group: dovecot
+    mode: "0755"
+  loop: "{{ dovecot_virtual_folders | dict2items }}"
+  when: dovecot_virtual_enabled
+
+- name: Render dovecot-virtual file
+  ansible.builtin.template:
+    src: etc/dovecot/virtual/dovecot-virtual.j2
+    dest: "/etc/dovecot/virtual/{{ item.key }}/dovecot-virtual"
+    owner: dovecot
+    group: dovecot
+    mode: "0644"
+  vars:
+    virtual_folder: "{{ item.value }}"
+  loop: "{{ dovecot_virtual_folders | dict2items }}"
+  when: dovecot_virtual_enabled
+
 - name: Start and enable dovecot
   ansible.builtin.service:
     name: dovecot

@@ -147,6 +147,10 @@ dovecot_quota_warning_executable_user: dovecot
 dovecot_quota_warning_socket_user: vmail
 dovecot_quota_warnings: []
 
+dovecot_imap_capability: ""
+dovecot_virtual_enabled: false
+dovecot_virtual_folders: {}
+
 dovecot_push_notification_enabled: false
 dovecot_push_notification_driver: ""
 
