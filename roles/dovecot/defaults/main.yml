@@ -101,6 +101,7 @@ dovecot_auth_mechanisms:
 dovecot_auth_ldap_mechanisms:
   - login
   - plain
+dovecot_auth_ldap_deny_mechanisms: "{{ dovecot_auth_ldap_mechanisms }}"
 
 dovecot_auth_static_passdb_args: ["proxy=y", "nopassword=y"]
 dovecot_auth_username_chars: abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890.-_@
@@ -117,6 +118,18 @@ dovecot_auth_ldap_pass_attrs: ["uid=user", "userPassword=password"]
 dovecot_auth_ldap_pass_filter: "(&(objectClass=posixAccount)(uid=%u))"
 dovecot_auth_ldap_iterate_attrs: ["uid=user"]
 dovecot_auth_ldap_iterate_filter: "(objectClass=posixAccount)"
+
+dovecot_auth_ldap_deny_passdb: false
+dovecot_auth_ldap_deny_uri: "{{ dovecot_auth_ldap_uri }}"
+dovecot_auth_ldap_deny_bind_dn: "{{ dovecot_auth_ldap_bind_dn }}"
+dovecot_auth_ldap_deny_bind_pass: "{{ dovecot_auth_ldap_bind_pass }}"
+dovecot_auth_ldap_deny_search_base: "{{ dovecot_auth_ldap_search_base }}"
+dovecot_auth_ldap_deny_user_attrs: "{{ dovecot_auth_ldap_user_attrs }}"
+dovecot_auth_ldap_deny_user_filter: "{{ dovecot_auth_ldap_user_filter }}"
+dovecot_auth_ldap_deny_pass_attrs: "{{ dovecot_auth_ldap_pass_attrs }}"
+dovecot_auth_ldap_deny_pass_filter: "{{ dovecot_auth_ldap_pass_filter }}"
+dovecot_auth_ldap_deny_iterate_attrs: "{{ dovecot_auth_ldap_iterate_attrs }}"
+dovecot_auth_ldap_deny_iterate_filter: "{{ dovecot_auth_ldap_iterate_filter }}"
 
 dovecot_auth_oauth2_tokeninfo_url: ""
 dovecot_auth_oauth2_username_attribute: email
