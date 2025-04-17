@@ -4,6 +4,16 @@
 #
 # <doc/wiki/AuthDatabase.LDAP.txt>
 
+{% if dovecot_auth_ldap_deny_passdb %}
+passdb {
+  driver = ldap
+  mechanisms = {{ dovecot_auth_ldap_deny_mechanisms | join(' ') }}
+  # Users found in this passdb are DENIED access rather than GRANTED access
+  deny = yes
+  args = /etc/dovecot/dovecot-ldap-deny.conf.ext
+}
+{% endif %}
+
 passdb {
   driver = ldap
   mechanisms = {{ dovecot_auth_ldap_mechanisms | join(' ') }}
@@ -22,7 +32,7 @@ userdb {
 userdb {
   driver = ldap
   args = /etc/dovecot/dovecot-ldap.conf.ext
-  
+
   # Default fields can be used to specify defaults that LDAP may override
   #default_fields = home=/home/virtual/%u
 }
