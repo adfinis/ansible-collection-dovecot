@@ -4,12 +4,13 @@
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/adfinis/ansible-collection-dovecot/ansible-lint.yml)
 [![adfinis.dovecot on Ansible Galaxy](https://img.shields.io/badge/collection-adfinis.dovecot-blue)](https://galaxy.ansible.com/ui/repo/published/adfinis/dovecot/)
 
-Colletion to deploy the [Dovecot](https://dovecot.org/) IMAP server.
+Collection to deploy the [Dovecot](https://dovecot.org/) IMAP server.
 
 ## Requirements
 
-- This collection is designed to work with Debian 10 or later.
-    - The exact version of Debian that will work depends on the version of Dovecot is being deployed (Dovecot is installed from the upstream repositories).
+- This collection is designed to work with Dovecot CE 2.3 and Debian 10 to 12.
+    - The exact version of Debian that will work depends on the version of Dovecot is being deployed
+    - Dovecot is installed from the upstream repositories for Debian 10 and 11, and from the distribution repositories for Debian 12.
     
 ## Dependencies
 
