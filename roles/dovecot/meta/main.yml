@@ -31,7 +31,7 @@ galaxy_info:
   platforms:
     - name: Debian
       versions:
-        - buster 
+        - buster
         - bullseye
         - bookworm
 
