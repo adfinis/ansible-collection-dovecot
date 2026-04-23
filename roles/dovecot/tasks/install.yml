@@ -4,11 +4,13 @@
   ansible.builtin.apt_key:
     url: https://repo.dovecot.org/DOVECOT-REPO-GPG
     keyring: /etc/apt/trusted.gpg.d/dovecot.gpg
+  when: "ansible_facts.distribution_major_version|int < 12"
 
 - name: Add dovecot-ce repository
   ansible.builtin.apt_repository:
     filename: dovecot
     repo: "{{ dovecot_repository }}"
+  when: "ansible_facts.distribution_major_version|int < 12"
 
 - name: Install packages
   ansible.builtin.apt:
