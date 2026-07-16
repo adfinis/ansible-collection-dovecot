@@ -7,3 +7,7 @@ skip_list:
   - schema[meta-runtime]
   - name[casing]
   - yaml[comments-indentation]
+
+exclude_paths:
+  - .cache/  # implicit unless exclude_paths is defined in config
+  - .github/
