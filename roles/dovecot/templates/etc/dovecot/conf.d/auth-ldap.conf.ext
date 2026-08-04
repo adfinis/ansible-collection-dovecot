@@ -10,6 +10,10 @@ passdb {
   mechanisms = {{ dovecot_auth_ldap_deny_mechanisms | join(' ') }}
   # Users found in this passdb are DENIED access rather than GRANTED access
   deny = yes
+{% if dovecot_auth_ldap_deny_passdb_skip_authenticated %}
+  # ... but not, if they are already authenticated, e.g. via a master password
+  skip = authenticated
+{% endif %}
   args = /etc/dovecot/dovecot-ldap-deny.conf.ext
 }
 {% endif %}

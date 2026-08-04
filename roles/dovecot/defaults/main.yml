@@ -120,6 +120,7 @@ dovecot_auth_ldap_iterate_attrs: ["uid=user"]
 dovecot_auth_ldap_iterate_filter: "(objectClass=posixAccount)"
 
 dovecot_auth_ldap_deny_passdb: false
+dovecot_auth_ldap_deny_passdb_skip_authenticated: false
 dovecot_auth_ldap_deny_uri: "{{ dovecot_auth_ldap_uri }}"
 dovecot_auth_ldap_deny_bind_dn: "{{ dovecot_auth_ldap_bind_dn }}"
 dovecot_auth_ldap_deny_bind_pass: "{{ dovecot_auth_ldap_bind_pass }}"
